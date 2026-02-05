@@ -15,21 +15,21 @@ const Login: React.FC = () => {
     try {
       setIsGoogleLoading(true);
       console.log('Google OAuth success, credential received');
-      
+
       if (!credentialResponse.credential) {
         throw new Error('No credential received from Google');
       }
-      
+
       console.log('Authenticating with backend...');
       const response = await authenticateWithGoogle(credentialResponse.credential);
       console.log('Backend authentication successful:', response);
-      
+
       login(response.admin, response.token);
       console.log('Admin logged in, redirecting to /admin');
       toast.success('Successfully logged in!', {
         description: `Welcome back, ${response.admin.name}!`
       });
-      
+
       // Use setTimeout to ensure state updates are processed
       setTimeout(() => {
         navigate('/admin', { replace: true });
@@ -91,20 +91,16 @@ const Login: React.FC = () => {
           <div className="space-y-4">
             {import.meta.env.VITE_GOOGLE_CLIENT_ID ? (
               <div className="w-full flex justify-center">
-                <div className="w-full max-w-[320px]">
-                  <div className="[&>div]:w-full [&>div>div]:w-full [&>div>div>div]:w-full">
-                    <GoogleLogin
-                      onSuccess={handleGoogleSuccess}
-                      onError={handleGoogleError}
-                      useOneTap={false}
-                      theme="outline"
-                      size="large"
-                      text="signin_with"
-                      shape="rectangular"
-                      logo_alignment="left"
-                    />
-                  </div>
-                </div>
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleError}
+                  useOneTap={false}
+                  theme="outline"
+                  size="large"
+                  text="signin_with"
+                  shape="rectangular"
+                  logo_alignment="left"
+                />
               </div>
             ) : (
               <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-sm text-yellow-800">
@@ -115,13 +111,13 @@ const Login: React.FC = () => {
           </div>
 
           <div className="text-center pt-8 border-t border-gray-100 mt-4">
-             <p className="text-xs text-gray-400">
-                Admin access requires Google authentication
-             </p>
+            <p className="text-xs text-gray-400">
+              Admin access requires Google authentication
+            </p>
           </div>
 
           <p className="text-center text-xs text-gray-400 mt-2">
-            By clicking continue, you agree to our <br/> 
+            By clicking continue, you agree to our <br />
             <a href="#" className="underline hover:text-black transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-black transition-colors">Privacy Policy</a>.
           </p>
         </div>

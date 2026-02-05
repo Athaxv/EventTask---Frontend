@@ -11,10 +11,6 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeTab, onTabChange, onL
   const menuItems = [
     { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { id: 'imported', icon: CheckCircle, label: 'Imported Events' },
-    { id: 'events', icon: Calendar, label: 'All Events' },
-    { id: 'customers', icon: Users, label: 'Customers' },
-    { id: 'analytics', icon: PieChart, label: 'Analytics' },
-    { id: 'settings', icon: Settings, label: 'Settings' },
   ];
 
   return (
@@ -31,11 +27,10 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeTab, onTabChange, onL
           <button
             key={item.id}
             onClick={() => onTabChange(item.id)}
-            className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-              activeTab === item.id
+            className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${activeTab === item.id
                 ? 'bg-black text-white shadow-lg shadow-gray-200'
                 : 'text-gray-500 hover:bg-gray-50 hover:text-black'
-            }`}
+              }`}
           >
             <item.icon size={18} />
             <span>{item.label}</span>
@@ -45,12 +40,12 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeTab, onTabChange, onL
 
       {/* User Profile / Logout */}
       <div className="p-4 border-t border-gray-100">
-        <button 
-            onClick={onLogout}
-            className="w-full flex items-center space-x-3 px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center space-x-3 px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-50 rounded-xl transition-colors"
         >
-            <LogOut size={18} />
-            <span>Sign Out</span>
+          <LogOut size={18} />
+          <span>Sign Out</span>
         </button>
       </div>
     </aside>
